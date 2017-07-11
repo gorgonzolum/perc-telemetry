@@ -19,8 +19,6 @@ void setup() {
   delay(100);
   hc12.write("AT+DEFAULTS");
   delay(100);
-  hc12.write("AT+FU4");
-  delay(100);
   Serial.print("Reading: " + hc12.readString() + "\n"); 
   delay(50);
   hc12.write("AT+RX");
