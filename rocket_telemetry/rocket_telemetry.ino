@@ -2,7 +2,7 @@
  *  License: MIT
  *
  *  Libraries Needed:
- *    Sparkfun MPU9250: https://github.com/sparkfun/MPU-9250_Breakout
+ *    Sparkfun MPU9250 (DMP): https://github.com/sparkfun/SparkFun_MPU-9250-DMP_Arduino_Library
  *    Adafruit BMP085: https://github.com/adafruit/Adafruit-BMP085-Library
  */
 #include <MPU9250_RegisterMap.h>
