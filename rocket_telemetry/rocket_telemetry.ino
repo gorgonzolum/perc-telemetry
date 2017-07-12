@@ -73,21 +73,25 @@ void setupHC12 (void) {
 
   hc12.write("AT+DEFAULT");
   delay(100);
-  String input = hc12.readString();
-  logInfo(input);
-  if (!input.startsWith("OK")) {
-    logInfo("[HC12] ERROR Communicating with HC12!");
+  String statusInfo = hc12.readString();
+  Serial.println(statusInfo);
+  if (!statusInfo.startsWith("OK")) {
+    Serial.println("[HC12] ERROR Communicating with HC12!");
   }
-
+  
+  delay(50);
   hc12.write("AT+RX");
   delay(100);
-  logInfo("Transmit Parameters:\n" + hc12.readString());
+  String transmitParams = hc12.readString();
 
   //TODO: Setup commands here
   //TODO: verify operation here
-  
+
+  // Exit Command Mode and change serial baud
   digitalWrite(hc12SetPin, HIGH);
-  
+   
+  logInfo("Transmit Parameters:\n" + transmitParams);
+  Serial.println("Transmit Parameters:\n" + transmitParams);
   logInfo("[HC12 OK]");
 }
 
@@ -227,8 +231,7 @@ void transmitIMUData(IMUData data) {
   hc12.print(String(data.accel.x) + "\t" + String(data.accel.y) + "\t" + String(data.accel.z) + "\t");
   hc12.print(String(data.gyro.x) + "\t" + String(data.gyro.y) + "\t" + String(data.gyro.z) + "\t");
   hc12.print(String(data.mag.x) + "\t" + String(data.mag.y) + "\t" + String(data.mag.z) + "\t");
-  hc12.print(String(data.seaPressure) + "\t" + String(data.pressure) + "\t" + String(data.temp) + "\t");
-  hc12.print(String(data.altitude) + "\n");
+  hc12.print(String(data.pressure) + "\t" + String(data.temp) + "\n");
   delay(100);
   digitalWrite(statusPin, LOW);
 }

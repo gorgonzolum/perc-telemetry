@@ -13,7 +13,7 @@ SoftwareSerial hc12(hc12TxPin, hc12RxPin);
 
 void setup() {
   Serial.begin(9600);
-  hc12.begin(9600);
+  hc12.begin(1200);
   pinMode(hc12SetPin, OUTPUT);
   digitalWrite(hc12SetPin, LOW);
   delay(100);
@@ -21,7 +21,6 @@ void setup() {
   delay(100);
   Serial.print("Reading: " + hc12.readString() + "\n"); 
   delay(50);
-  
   hc12.write("AT+RX");
   delay(100);
   Serial.print("Parameters: " + hc12.readString() + "\n");
@@ -31,7 +30,6 @@ void setup() {
 }
 
 void loop() {
-  if (hc12.available() > 0){
-    Serial.write(hc12.read());
-  }
+  // put your main code here, to run repeatedly:
+
 }
